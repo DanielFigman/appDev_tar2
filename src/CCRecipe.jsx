@@ -16,8 +16,7 @@ export default class CCRecipe extends Component {
     }
 
     btnChange = () => {
-        this.props.sendData(this.props.id, this.sta.btnName)
-
+        this.props.sendData({ID:this.props.id, NAME:this.props.btnName})
     }
 
     render() {

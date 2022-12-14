@@ -39,7 +39,7 @@ const food2= [
     }
 ]
 
-let receipesToPrepeare = [];
+let receipesToPrepeare = [...food];
 let recipesToEat = [];
 
 
@@ -54,18 +54,24 @@ export default class CCMyKitchen extends Component {
     }
 
     getData = (data) => {
-
         if (data["REMOVE"]) { // if true remove the dish from the receipes to make and add to recipesToEat
-            receipesToPrepeare.push(food.filter(x=> x.id != data.ID))
-            recipesToEat.push(food.filter(x=> x.id == data.ID))
+            let ent = receipesToPrepeare.filter(x=> x.id == data.ID)
+            receipesToPrepeare = receipesToPrepeare.filter(x=> x.id != data.ID)
+            recipesToEat.push({id: ent[0].id, img: ent[0].img, name: ent[0].name, details: ent[0].details})
             let x = data["childState"]
             x({resptoPrep:receipesToPrepeare, respToEat:recipesToEat})
-            console.log(receipesToPrepeare,recipesToEat )
+            console.log(receipesToPrepeare,recipesToEat)
+            
+
+            
         }
         else {
-            receipesToPrepeare.push(recipesToEat.filter(x=> x.id == data.ID))
-            recipesToEat.filter(x=> x.id != data.ID);
-            console.log(receipesToPrepeare,recipesToEat )
+            let ent = recipesToEat.filter(x=> x.id == data.ID)
+            receipesToPrepeare.push({id: ent[0].id, img: ent[0].img, name: ent[0].name, details: ent[0].details})
+            recipesToEat = recipesToEat.filter(x=> x.id != data.ID);
+            let x = data["childState"]
+            x({resptoPrep:receipesToPrepeare, respToEat:recipesToEat})
+            console.log(receipesToPrepeare,recipesToEat)
         }
     }
 
@@ -74,7 +80,7 @@ export default class CCMyKitchen extends Component {
         return (
             <div>
                 <div className="row">
-                    <CCRecipesList recipesPre={food} recipesEat={recipesToEat} sendData={this.getData} />
+                    <CCRecipesList recipesPre={receipesToPrepeare} recipesEat={recipesToEat} sendData={this.getData} />
                 </div>
             </div>
         );

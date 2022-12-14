@@ -18,15 +18,17 @@ export default class CCRecipesList extends Component {
         };
 
         this.setStateFunc = (data) => {
-            this.setState({ recipes: data.resptoPrep[0], recipesEat: data.respToEat[0]})
+            let x = data.resptoPrep
+            let y =data.respToEat
+          this.setState({ recipes: x, recipesEat: y})
         }
     }
 
 
 
     getData = (data) => {
-        let x = data.btnName == "Eat!" ? false : true;
-        this.props.sendData({ REMOVE: x, ID: data.id, childState: this.setStateFunc })
+        let x = data.NAME == "Eat!" ? false : true;
+        this.props.sendData({ REMOVE: x, ID: data.ID, childState: this.setStateFunc })
     }
 
 
@@ -34,7 +36,7 @@ export default class CCRecipesList extends Component {
     render() {
 
 
-        let recipesStr = this.state.recipes.map(recip =>
+        let recipesStr = this.state.recipes.map((recip, index) =>
             <CCRecipe
                 id={recip.id}
                 img={recip.img}
@@ -43,7 +45,7 @@ export default class CCRecipesList extends Component {
                 btnName='Prepare dish!'
                 sendData={this.getData}/>);
 
-        let recipesStr2 = this.state.recipesEat.map(recip =>
+        let recipesStr2 = this.state.recipesEat.map((recip, index) =>
             <CCRecipe
                 id={recip.id}
                 img={recip.img}
