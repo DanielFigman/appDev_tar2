@@ -19,8 +19,8 @@ export default class CCRecipesList extends Component {
 
         this.setStateFunc = (data) => {
             let x = data.resptoPrep
-            let y =data.respToEat
-          this.setState({ recipes: x, recipesEat: y})
+            let y = data.respToEat
+            this.setState({ recipes: x, recipesEat: y, counter: x.length, counter1: y.length })
         }
     }
 
@@ -35,6 +35,7 @@ export default class CCRecipesList extends Component {
 
     render() {
 
+        console.log(this.state.recipes, this.state.recipesEat)
 
         let recipesStr = this.state.recipes.map((recip, index) =>
             <CCRecipe
@@ -43,7 +44,7 @@ export default class CCRecipesList extends Component {
                 name={recip.name}
                 details={recip.details}
                 btnName='Prepare dish!'
-                sendData={this.getData}/>);
+                sendData={this.getData} />);
 
         let recipesStr2 = this.state.recipesEat.map((recip, index) =>
             <CCRecipe
@@ -52,14 +53,23 @@ export default class CCRecipesList extends Component {
                 name={recip.name}
                 details={recip.details}
                 btnName="Eat!"
-                sendData={this.getData}/>);
+                sendData={this.getData} />);
+
+
+        let strToPrep = this.state.counter > 0 ? "Dishes to prepare" : "";
+        let strToEat = this.state.counter1 > 0 ? "Dishes to Eat" : "";
+
 
         return (
             <div>
                 <div className="row">
+                    <div>{strToPrep}</div>
                     {recipesStr}
+
                 </div>
+                <br /><br /><br /><br /><br /><br /><br /><br /><br />
                 <div className="row">
+                    <div>{strToEat}</div>
                     {recipesStr2}
                 </div>
             </div>

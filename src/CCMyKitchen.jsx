@@ -1,6 +1,5 @@
 import { cloneElement } from "react";
 import { Component } from "react";
-import CCRecipeDone from "./CCRecipsDone";
 import CCRecipesList from "./CCRecipsList";
 
 const food = [
@@ -60,7 +59,6 @@ export default class CCMyKitchen extends Component {
             recipesToEat.push({id: ent[0].id, img: ent[0].img, name: ent[0].name, details: ent[0].details})
             let x = data["childState"]
             x({resptoPrep:receipesToPrepeare, respToEat:recipesToEat})
-            console.log(receipesToPrepeare,recipesToEat)
             
 
             
@@ -71,7 +69,6 @@ export default class CCMyKitchen extends Component {
             recipesToEat = recipesToEat.filter(x=> x.id != data.ID);
             let x = data["childState"]
             x({resptoPrep:receipesToPrepeare, respToEat:recipesToEat})
-            console.log(receipesToPrepeare,recipesToEat)
         }
     }
 
