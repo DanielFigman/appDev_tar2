@@ -59,7 +59,8 @@ export default class CCRecipesList extends Component {
 
 
         let strToPrep = this.state.counter > 0 ? "Dishes to prepare" : "";
-        let strToEat = this.state.counter1 > 0 ? "Dishes to Eat" : "";
+        let toEat = this.state.counter1;
+        let strToEat = this.state.counter1 > 0 ? "Dishes to Eat: "+ toEat: "";
 
 
         return (
