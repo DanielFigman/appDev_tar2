@@ -37,22 +37,24 @@ export default class CCRecipesList extends Component {
 
         console.log(this.state.recipes, this.state.recipesEat)
 
-        let recipesStr = this.state.recipes.map((recip, index) =>
+        let recipesStr = this.state.recipes.map((recip) =>
             <CCRecipe
                 id={recip.id}
                 img={recip.img}
                 name={recip.name}
                 details={recip.details}
                 btnName='Prepare dish!'
+                key = {recip.id}
                 sendData={this.getData} />);
 
-        let recipesStr2 = this.state.recipesEat.map((recip, index) =>
+        let recipesStr2 = this.state.recipesEat.map((recip) =>
             <CCRecipe
                 id={recip.id}
                 img={recip.img}
                 name={recip.name}
                 details={recip.details}
                 btnName="Eat!"
+                key = {recip.id}
                 sendData={this.getData} />);
 
 
